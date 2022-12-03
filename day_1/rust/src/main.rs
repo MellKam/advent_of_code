@@ -1,9 +1,8 @@
 mod quick_sort;
 
 use quick_sort::quick_sort;
-use std::fs;
 
-fn get_total_calories(calorie_list: &String) -> Vec<i32> {
+fn get_total_calories(calorie_list: &str) -> Vec<i32> {
 	let mut total_calories = Vec::<i32>::new();
 	let mut temp_sum: i32 = 0;
 
@@ -22,10 +21,9 @@ fn get_total_calories(calorie_list: &String) -> Vec<i32> {
 }
 
 fn main() {
-	let data =
-		fs::read_to_string("./day_1/input.txt").expect("Error while trying to read input file");
+	let data = include_str!("../../input.txt");
 
-	let total_calories = get_total_calories(&data);
+	let total_calories = get_total_calories(data);
 	let length = total_calories.len();
 
 	let max = total_calories[length - 1];

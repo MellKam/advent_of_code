@@ -79,14 +79,13 @@ fn get_move_by_game_result(opponent_move: MoveType, expected_game_result: GameRe
 		return opponent_move;
 	};
 
-	let inverted_result =
-		(expected_game_result as i32 - opponent_move as i32).rem_euclid(MOVE_COUNTS) * -1;
+	let num = expected_game_result as i32 - opponent_move as i32;
 
-	if inverted_result == 0 {
+	if num == 0 {
 		return MoveType::from(MOVE_COUNTS);
 	}
 
-	return MoveType::from(inverted_result.rem_euclid(MOVE_COUNTS));
+	return MoveType::from((num.rem_euclid(MOVE_COUNTS) * -1).rem_euclid(MOVE_COUNTS));
 }
 
 fn main() {
