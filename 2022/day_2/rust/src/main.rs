@@ -53,9 +53,9 @@ fn parse_game_result(string_game_result: &str) -> GameResult {
 	}
 }
 
-fn get_player_game_score(opponent_move: MoveType, player_move: MoveType) -> i32 {
+fn get_player_game_score(opponent_move: &MoveType, player_move: &MoveType) -> i32 {
 	let mut score: i32 = 0;
-	let player_move_score = player_move as i32;
+	let player_move_score = *player_move as i32;
 
 	if opponent_move == player_move {
 		// Draw
@@ -63,7 +63,7 @@ fn get_player_game_score(opponent_move: MoveType, player_move: MoveType) -> i32 
 		return score;
 	}
 
-	if ((opponent_move as i32) - player_move_score).rem_euclid(MOVE_COUNTS) == 1 {
+	if ((*opponent_move as i32) - player_move_score).rem_euclid(MOVE_COUNTS) == 1 {
 		// Lose
 		score += GameResult::Lose.get_score() + player_move_score;
 	} else {
@@ -74,12 +74,12 @@ fn get_player_game_score(opponent_move: MoveType, player_move: MoveType) -> i32 
 	return score;
 }
 
-fn get_move_by_game_result(opponent_move: MoveType, expected_game_result: GameResult) -> MoveType {
+fn get_move_by_game_result(opponent_move: &MoveType, expected_game_result: GameResult) -> MoveType {
 	if expected_game_result == GameResult::Draw {
-		return opponent_move;
+		return *opponent_move;
 	};
 
-	let num = expected_game_result as i32 - opponent_move as i32;
+	let num = expected_game_result as i32 - *opponent_move as i32;
 
 	if num == 0 {
 		return MoveType::from(MOVE_COUNTS);
@@ -98,9 +98,9 @@ fn main() {
 			};
 
 			let opponent_move = parse_move(opponent);
-			let player_move = get_move_by_game_result(opponent_move, parse_game_result(game_result));
+			let player_move = get_move_by_game_result(&opponent_move, parse_game_result(game_result));
 
-			return get_player_game_score(opponent_move, player_move);
+			return get_player_game_score(&opponent_move, &player_move);
 		})
 		.sum::<i32>();
 
