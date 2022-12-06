@@ -1,16 +1,7 @@
-mod crates_iter;
-
-use crates_iter::CratesLineIterator;
+use crate::{crates_iter::CratesLineIterator, procedure::Procuedure};
 
 #[derive(Debug)]
-struct Procuedure {
-	pub move_from: usize,
-	pub move_to: usize,
-	pub crates_count: u32,
-}
-
-#[derive(Debug)]
-struct SupplyStacks {
+pub struct SupplyStacks {
 	stacks: Vec<Vec<char>>,
 }
 
@@ -39,7 +30,7 @@ impl SupplyStacks {
 		}
 	}
 
-	pub fn apply_procedure(&mut self, procedure: Procuedure, save_order: bool) {
+	pub fn apply_procedure(&mut self, procedure: &Procuedure, save_order: bool) {
 		if procedure.move_from == procedure.move_to {
 			return;
 		}
@@ -75,37 +66,4 @@ impl SupplyStacks {
 
 		return result;
 	}
-}
-
-fn main() {
-	let data = include_str!("../../input.txt");
-
-	let (string_stacks, procedures_str) = match data.split_once("\n\n") {
-		Some((a, b)) => (a, b),
-		_ => panic!(),
-	};
-
-	let mut stacks = SupplyStacks::new(string_stacks);
-
-	let procedures = procedures_str
-		.lines()
-		.map(|line| {
-			let items = line.split(" ").collect::<Vec<&str>>();
-
-			return Procuedure {
-				crates_count: items[1].parse::<u32>().unwrap(),
-				move_from: items[3].parse::<usize>().unwrap(),
-				move_to: items[5].parse::<usize>().unwrap(),
-			};
-		})
-		.collect::<Vec<Procuedure>>();
-
-	for proc in procedures {
-		stacks.apply_procedure(proc, true);
-	}
-
-	let highest_vec = stacks.get_highest_elements();
-	let highest_str = highest_vec.iter().collect::<String>();
-
-	println!("{highest_str}");
 }

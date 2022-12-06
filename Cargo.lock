@@ -3,21 +3,21 @@
 version = 3
 
 [[package]]
-name = "day_1_rust"
+name = "rust_2022_01"
 version = "0.1.0"
 
 [[package]]
-name = "day_2_rust"
+name = "rust_2022_02"
 version = "0.1.0"
 
 [[package]]
-name = "day_3_rust"
+name = "rust_2022_03"
 version = "0.1.0"
 
 [[package]]
-name = "day_4_rust"
+name = "rust_2022_04"
 version = "0.1.0"
 
 [[package]]
-name = "day_5_rust"
+name = "rust_2022_05"
 version = "0.1.0"

@@ -6,7 +6,7 @@ pub struct CratesLineIterator<'a> {
 }
 
 impl<'a> CratesLineIterator<'a> {
-	fn skip_by(&mut self, n: usize) -> Result<(), usize> {
+	fn advance(&mut self, n: usize) -> Result<(), usize> {
 		for i in 0..n {
 			self.iter.next().ok_or(i)?;
 		}
@@ -25,27 +25,23 @@ impl Iterator for CratesLineIterator<'_> {
 	type Item = (usize, char);
 
 	fn next(&mut self) -> Option<Self::Item> {
-		if let Err(_) = self.skip_by(1) {
+		if let Err(_) = self.advance(1) {
 			return None;
 		}
-		let optional_char = self.iter.next();
+		let current_char = self.iter.next()?;
 
-		if let Err(size) = self.skip_by(2) {
+		if let Err(size) = self.advance(2) {
 			if size != 1 {
 				return None;
 			}
 		}
 
-		return match optional_char {
-			Some(' ') => {
-				self.stack_index += 1;
-				return self.next();
-			}
-			Some(c) => {
-				self.stack_index += 1;
-				Some((self.stack_index as usize, c))
-			}
-			None => return None,
-		};
+		self.stack_index += 1;
+
+		if current_char == ' ' {
+			return self.next();
+		}
+
+		return Some((self.stack_index as usize, current_char));
 	}
 }
