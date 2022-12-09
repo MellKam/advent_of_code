@@ -9,30 +9,7 @@
 			"request": "launch",
 			"name": "Debug executable 'rust_2022_01'",
 			"cargo": {
-				"args": [
-					"build",
-					"--bin=rust_2022_01",
-					"--package=rust_2022_01"
-				],
-				"filter": {
-					"name": "rust_2022_01",
-					"kind": "bin"
-				}
-			},
-			"args": [],
-			"cwd": "${workspaceFolder}"
-		},
-		{
-			"type": "lldb",
-			"request": "launch",
-			"name": "Debug unit tests in executable 'rust_2022_01'",
-			"cargo": {
-				"args": [
-					"test",
-					"--no-run",
-					"--bin=rust_2022_01",
-					"--package=rust_2022_01"
-				],
+				"args": ["build", "--bin=rust_2022_01", "--package=rust_2022_01"],
 				"filter": {
 					"name": "rust_2022_01",
 					"kind": "bin"
@@ -46,30 +23,7 @@
 			"request": "launch",
 			"name": "Debug executable 'rust_2022_02'",
 			"cargo": {
-				"args": [
-					"build",
-					"--bin=rust_2022_02",
-					"--package=rust_2022_02"
-				],
-				"filter": {
-					"name": "rust_2022_02",
-					"kind": "bin"
-				}
-			},
-			"args": [],
-			"cwd": "${workspaceFolder}"
-		},
-		{
-			"type": "lldb",
-			"request": "launch",
-			"name": "Debug unit tests in executable 'rust_2022_02'",
-			"cargo": {
-				"args": [
-					"test",
-					"--no-run",
-					"--bin=rust_2022_02",
-					"--package=rust_2022_02"
-				],
+				"args": ["build", "--bin=rust_2022_02", "--package=rust_2022_02"],
 				"filter": {
 					"name": "rust_2022_02",
 					"kind": "bin"
@@ -83,30 +37,7 @@
 			"request": "launch",
 			"name": "Debug executable 'rust_2022_03'",
 			"cargo": {
-				"args": [
-					"build",
-					"--bin=rust_2022_03",
-					"--package=rust_2022_03"
-				],
-				"filter": {
-					"name": "rust_2022_03",
-					"kind": "bin"
-				}
-			},
-			"args": [],
-			"cwd": "${workspaceFolder}"
-		},
-		{
-			"type": "lldb",
-			"request": "launch",
-			"name": "Debug unit tests in executable 'rust_2022_03'",
-			"cargo": {
-				"args": [
-					"test",
-					"--no-run",
-					"--bin=rust_2022_03",
-					"--package=rust_2022_03"
-				],
+				"args": ["build", "--bin=rust_2022_03", "--package=rust_2022_03"],
 				"filter": {
 					"name": "rust_2022_03",
 					"kind": "bin"
@@ -120,30 +51,7 @@
 			"request": "launch",
 			"name": "Debug executable 'rust_2022_04'",
 			"cargo": {
-				"args": [
-					"build",
-					"--bin=rust_2022_04",
-					"--package=rust_2022_04"
-				],
-				"filter": {
-					"name": "rust_2022_04",
-					"kind": "bin"
-				}
-			},
-			"args": [],
-			"cwd": "${workspaceFolder}"
-		},
-		{
-			"type": "lldb",
-			"request": "launch",
-			"name": "Debug unit tests in executable 'rust_2022_04'",
-			"cargo": {
-				"args": [
-					"test",
-					"--no-run",
-					"--bin=rust_2022_04",
-					"--package=rust_2022_04"
-				],
+				"args": ["build", "--bin=rust_2022_04", "--package=rust_2022_04"],
 				"filter": {
 					"name": "rust_2022_04",
 					"kind": "bin"
@@ -157,30 +65,7 @@
 			"request": "launch",
 			"name": "Debug executable 'rust_2022_05'",
 			"cargo": {
-				"args": [
-					"build",
-					"--bin=rust_2022_05",
-					"--package=rust_2022_05"
-				],
-				"filter": {
-					"name": "rust_2022_05",
-					"kind": "bin"
-				}
-			},
-			"args": [],
-			"cwd": "${workspaceFolder}"
-		},
-		{
-			"type": "lldb",
-			"request": "launch",
-			"name": "Debug unit tests in executable 'rust_2022_05'",
-			"cargo": {
-				"args": [
-					"test",
-					"--no-run",
-					"--bin=rust_2022_05",
-					"--package=rust_2022_05"
-				],
+				"args": ["build", "--bin=rust_2022_05", "--package=rust_2022_05"],
 				"filter": {
 					"name": "rust_2022_05",
 					"kind": "bin"
@@ -194,11 +79,7 @@
 			"request": "launch",
 			"name": "Debug executable 'rust_2022_06'",
 			"cargo": {
-				"args": [
-					"build",
-					"--bin=rust_2022_06",
-					"--package=rust_2022_06"
-				],
+				"args": ["build", "--bin=rust_2022_06", "--package=rust_2022_06"],
 				"filter": {
 					"name": "rust_2022_06",
 					"kind": "bin"
@@ -210,16 +91,11 @@
 		{
 			"type": "lldb",
 			"request": "launch",
-			"name": "Debug unit tests in executable 'rust_2022_06'",
+			"name": "Debug executable 'rust_2022_07'",
 			"cargo": {
-				"args": [
-					"test",
-					"--no-run",
-					"--bin=rust_2022_06",
-					"--package=rust_2022_06"
-				],
+				"args": ["build", "--bin=rust_2022_07", "--package=rust_2022_07"],
 				"filter": {
-					"name": "rust_2022_06",
+					"name": "rust_2022_07",
 					"kind": "bin"
 				}
 			},
