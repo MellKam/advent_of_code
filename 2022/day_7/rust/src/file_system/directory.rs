@@ -61,4 +61,29 @@ impl<'a> Directory<'a> {
 
 		return size;
 	}
+
+	pub fn get_smallest_folder_to_delete(&self, space_to_free: u32) -> Option<u32> {
+		let mut result = None;
+
+		let curr_dir_size = self.get_dir_size();
+		if curr_dir_size >= space_to_free {
+			result = Some(curr_dir_size);
+		}
+
+		if self.dirs.len() > 0 && result != None {
+			let min_child = self
+				.dirs
+				.iter()
+				.map(|d| d.get_smallest_folder_to_delete(space_to_free))
+				.filter(|size| size.is_some())
+				.map(|size| size.unwrap())
+				.min();
+
+			if min_child != None && min_child.unwrap() < result.unwrap() {
+				return min_child;
+			}
+		}
+
+		return result;
+	}
 }

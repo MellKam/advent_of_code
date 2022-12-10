@@ -23,13 +23,15 @@ pub struct ListItems<'a> {
 
 #[derive(Debug)]
 pub struct FileSystem<'a> {
+	total_memory: u32,
 	root_dir: Directory<'a>,
 	pub cwd: *mut Directory<'a>,
 }
 
 impl<'a> FileSystem<'a> {
-	pub fn new() -> Self {
+	pub fn new(total_memory: u32) -> Self {
 		let mut fs = Self {
+			total_memory,
 			root_dir: Directory::new("", None),
 			cwd: null_mut(),
 		};
@@ -72,7 +74,19 @@ impl<'a> FileSystem<'a> {
 		}
 	}
 
+	pub fn get_unused_space(&self) -> u32 {
+		self.total_memory - self.get_system_size()
+	}
+
+	pub fn get_system_size(&self) -> u32 {
+		self.root_dir.get_dir_size()
+	}
+
 	pub fn get_system_size_max(&self, max_size: u32) -> u32 {
 		self.root_dir.get_dir_size_max(max_size)
+	}
+
+	pub fn get_smallest_folder_to_delete(&self, space_to_free: u32) -> Option<u32> {
+		self.root_dir.get_smallest_folder_to_delete(space_to_free)
 	}
 }
