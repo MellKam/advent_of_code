@@ -13,6 +13,8 @@ fn main() {
 		fs_parser.apply_command(command);
 	}
 
+	println!("{:?}", fs_parser.fs.get_system_size_max(300_000));
+
 	let target_unused_space: u32 = 30_000_000;
 	let target_free_space = target_unused_space - fs_parser.fs.get_unused_space();
 
