@@ -9,6 +9,7 @@ members = [
 		"2022/day_6/rust",
 		"2022/day_7/rust",
 		"2022/day_8/rust",
-		"2022/day_9/rust"
+		"2022/day_9/rust",
+		"2022/day_10/rust"
 ]
 exclude = [ "2022" ]

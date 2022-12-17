@@ -101,6 +101,20 @@
 			},
 			"args": [],
 			"cwd": "${workspaceFolder}"
+		},
+		{
+			"type": "lldb",
+			"request": "launch",
+			"name": "Debug executable 'rust_2022_10'",
+			"cargo": {
+				"args": ["build", "--bin=rust_2022_10", "--package=rust_2022_10"],
+				"filter": {
+					"name": "rust_2022_10",
+					"kind": "bin"
+				}
+			},
+			"args": [],
+			"cwd": "${workspaceFolder}"
 		}
 	]
 }
