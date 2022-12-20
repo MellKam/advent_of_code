@@ -1,4 +1,4 @@
-use std::fmt::Debug;
+use std::fmt::{Debug, Display};
 
 #[derive(Debug)]
 enum Instruction {
@@ -54,6 +54,61 @@ impl<'a> Computer<'a> {
 	}
 }
 
+#[derive(Debug, Clone, Copy)]
+enum Pixel {
+	Black,
+	White,
+}
+
+impl Pixel {
+	pub fn symbol(&self) -> char {
+		match self {
+			Pixel::Black => '.',
+			Pixel::White => '#',
+		}
+	}
+}
+
+#[derive(Debug)]
+struct Screen {
+	row_width: usize,
+	display: Vec<Pixel>,
+}
+
+impl Screen {
+	pub fn new(row_width: usize) -> Self {
+		Self {
+			row_width,
+			display: Vec::new(),
+		}
+	}
+
+	pub fn fill_pixel(&mut self, cycle: u32, x: i32) {
+		let c = (cycle as i32 - 1) % 40;
+
+		if ((x - 1)..=(x + 1)).contains(&c) {
+			self.display.push(Pixel::White);
+		} else {
+			self.display.push(Pixel::Black);
+		}
+	}
+}
+
+impl Display for Screen {
+	fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+		write!(
+			f,
+			"{}",
+			self
+				.display
+				.chunks(self.row_width)
+				.map(|chunk| chunk.iter().map(|x| x.symbol()).collect::<String>())
+				.collect::<Vec<String>>()
+				.join("\n")
+		)
+	}
+}
+
 fn main() {
 	let data = include_str!("../../input.txt");
 
@@ -62,12 +117,18 @@ fn main() {
 		.map(|line| Instruction::from(line))
 		.collect::<Vec<Instruction>>();
 
-	let connt_cycles: Vec<u32> = vec![20, 60, 100, 140, 180, 220];
-	let mut sum: Vec<i32> = Vec::new();
+	// let connt_cycles: Vec<u32> = vec![20, 60, 100, 140, 180, 220];
+	// let mut sum: Vec<i32> = Vec::new();
+	// let mut on_cycle = |cycle: u32, x: i32| {
+	// 	if let Some(index) = connt_cycles.iter().position(|&c| c == cycle) {
+	// 		sum.push(x * connt_cycles[index] as i32);
+	// 	}
+	// };
+
+	let mut screen = Screen::new(40);
+
 	let mut on_cycle = |cycle: u32, x: i32| {
-		if let Some(index) = connt_cycles.iter().position(|&c| c == cycle) {
-			sum.push(x * connt_cycles[index] as i32);
-		}
+		screen.fill_pixel(cycle, x);
 	};
 
 	let mut computer = Computer::new(Some(&mut on_cycle));
@@ -76,5 +137,5 @@ fn main() {
 		computer.apply_instruction(instruction);
 	});
 
-	println!("{}", sum.iter().sum::<i32>());
+	println!("{}", screen);
 }
