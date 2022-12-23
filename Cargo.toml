@@ -1,15 +1,15 @@
 [workspace]
 resolver = "2"
 members = [
-    "2022/day_1/rust",
-		"2022/day_2/rust",
-		"2022/day_3/rust",
-		"2022/day_4/rust",
-		"2022/day_5/rust",
-		"2022/day_6/rust",
-		"2022/day_7/rust",
-		"2022/day_8/rust",
-		"2022/day_9/rust",
+    "2022/day_01/rust",
+		"2022/day_02/rust",
+		"2022/day_03/rust",
+		"2022/day_04/rust",
+		"2022/day_05/rust",
+		"2022/day_06/rust",
+		"2022/day_07/rust",
+		"2022/day_08/rust",
+		"2022/day_09/rust",
 		"2022/day_10/rust"
 ]
 exclude = [ "2022" ]
