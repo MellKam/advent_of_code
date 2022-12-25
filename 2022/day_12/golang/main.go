@@ -21,7 +21,12 @@ func main() {
 		panic("startVertex is nil")
 	}
 
-	shortestPath := graph.GetShortestPath(startVertex, endCoords)
+	endVertex := g.GetVertex(endCoords)
+	if endVertex == nil {
+		panic("endVertex is nil")
+	}
+
+	shortestPath := graph.FindShortestPathToValue(endVertex, byte('a')-96)
 
 	fmt.Println(shortestPath)
 }
@@ -92,7 +97,11 @@ func ConnectVertexesByTarget(v1 *graph.Vertex, v2 *graph.Vertex) {
 		return
 	}
 
-	if int(v2.Value())-int(v1.Value()) <= 1 {
+	delta := int(v2.Value()) - int(v1.Value())
+
+	// for part one with going up -> (v <= 1)
+	// for part two with going down -> (v >= -1)
+	if delta >= -1 {
 		v1.AddEdge(v2)
 	}
 }
