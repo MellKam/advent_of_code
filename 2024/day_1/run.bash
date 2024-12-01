@@ -1,0 +1,1 @@
+javac -d out ./src/main/java/main/Task2.java && java  -classpath out main.Task2
